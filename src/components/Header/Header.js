@@ -19,16 +19,17 @@ const Header=()=> {
             {/* <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/users">User</Nav.Link>
              <Nav.Link href="/admins">Admin</Nav.Link> */}
-         
-          </Nav>
-          <nav>
-               <NavDropdown title="Setting" id="basic-nav-dropdown">
+         </Nav>
+          <Nav>
+            <button className='btn-login'>log in</button>
+            <button className='btn-signup'>sign up</button>
+               {/* <NavDropdown title="Setting" id="basic-nav-dropdown">
               <NavDropdown.Item >Log in</NavDropdown.Item>
               <NavDropdown.Item > Log out</NavDropdown.Item>
               <NavDropdown.Item >Profile</NavDropdown.Item>
              
-            </NavDropdown>
-          </nav>
+            </NavDropdown> */}
+          </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
