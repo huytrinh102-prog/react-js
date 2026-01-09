@@ -1,0 +1,11 @@
+.admin-container{
+    display: flex;
+    .admin-contain{
+        width: 100pc;
+        .admin-header{
+            height: 40px;
+            border: 1px solid red}
+        .admin-main{
+            border: 1px solid green
+        }    
+    }}
