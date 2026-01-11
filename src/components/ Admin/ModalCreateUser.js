@@ -4,12 +4,26 @@ import Modal from "react-bootstrap/Modal";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
+import { FcPlus } from "react-icons/fc";
 
 const ModalCreateUser = () => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [preview, setpreview] = useState("");
+  const [email, setemail] = useState("");
+  const [password, setpassword] = useState("");
+  const [username, setusername] = useState("");
+  const [role, setrole] = useState("");
+  const [image, setimage] = useState("");
+
+  const handleimgchange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setpreview(URL.createObjectURL(file));
+    }
+  };
 
   return (
     <>
@@ -17,7 +31,13 @@ const ModalCreateUser = () => {
         Launch demo modal
       </Button>
 
-      <Modal show={show} onHide={handleClose} size="xl" backdrop="static">
+      <Modal
+        className="modal-add-user"
+        show={show}
+        onHide={handleClose}
+        size="xl"
+        backdrop="static"
+      >
         <Modal.Header closeButton>
           <Modal.Title>Add new user</Modal.Title>
         </Modal.Header>
@@ -48,11 +68,26 @@ const ModalCreateUser = () => {
                 </Form.Select>
               </Form.Group>
             </Row>
-
-            <Form.Group as={Col} controlId="imageform">
-              <Form.Label>Image</Form.Label>
-              <input type="file" />
+            <Form.Group
+              className="imageform-add"
+              as={Col}
+              controlId="imageform"
+            >
+              <Form.Label className="upload-box">
+                <FcPlus className="upload-icon" />
+                Upload file IMG
+              </Form.Label>
+              <input
+                hidden
+                type="file"
+                id="imageform"
+                onChange={handleimgchange}
+              />
             </Form.Group>
+            <div className="imageform-preview">
+              <span>Preview Image</span>
+              {preview && <img src={preview} alt="preview img" />}
+            </div>
           </Form>
         </Modal.Body>
         <Modal.Footer>

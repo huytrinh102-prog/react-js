@@ -1,0 +1,43 @@
+.modal-add-user {
+  .imageform-preview {
+    border: 1px dashed #ccc;
+    height: 150px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ccc;
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+}
+
+.imageform-add {
+  width: 100%;
+}
+
+.upload-box {
+  height: 200px;
+  border: 2px dashed #ccc;
+  border-radius: 12px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  cursor: pointer;
+  text-align: center;
+}
+
+.upload-icon {
+  font-size: 48px;
+}
+
+.upload-box span {
+  font-size: 14px;
+  color: #666;
+}

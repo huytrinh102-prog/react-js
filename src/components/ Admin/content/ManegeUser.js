@@ -1,5 +1,5 @@
 import ModalCreateUser from "../ModalCreateUser";
-
+import "./ManegeUser.scss";
 const ManegeUser = (props) => {
   return (
     <div className="manage-user-container">
