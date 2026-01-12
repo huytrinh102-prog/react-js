@@ -6,6 +6,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import { FcPlus } from "react-icons/fc";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const ModalCreateUser = ({ show, handleClose }) => {
   // const [show, setShow] = useState(false);
@@ -27,10 +28,23 @@ const ModalCreateUser = ({ show, handleClose }) => {
       setpreview(URL.createObjectURL(file));
     }
   };
+  // Source - https://stackoverflow.com/a
+  // Posted by John Rutherford, modified by community. See post 'Timeline' for change history
+  // Retrieved 2026-01-12, License - CC BY-SA 4.0
+
+  const validateEmail = (email) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+  };
 
   const handlesubmitCreateUser = async () => {
-    if (!email || !password || !username || !role || !image) {
-      alert("please fill the form");
+    const isvalidateEmail = validateEmail(email);
+
+    if (!isvalidateEmail || !email || !password || !role) {
+      toast.error("please fill the form");
       return;
     }
 
@@ -42,7 +56,17 @@ const ModalCreateUser = ({ show, handleClose }) => {
     data.append("userImage", image);
 
     try {
-      await axios.post("http://localhost:8081/api/v1/participant", data);
+      let res = await axios.post(
+        "http://localhost:8081/api/v1/participant",
+        data
+      );
+      console.log(res.data);
+      if (res.data && res.data.EC === 0) {
+        toast.success(res.data.EM);
+      }
+      if (res.data && res.data.EC !== 0) {
+        toast.error(res.data.EM);
+      }
 
       setemail("");
       setpassword("");
