@@ -8,6 +8,8 @@ import { FcPlus } from "react-icons/fc";
 import { toast } from "react-toastify";
 import { postCreateNewUser } from "../../servies/apiServices";
 const ModalCreateUser = ({ show, handleClose }) => {
+  // code xử lý create user
+
   // const [show, setShow] = useState(false);
 
   // const handleClose = () => setShow(false);
@@ -46,28 +48,25 @@ const ModalCreateUser = ({ show, handleClose }) => {
       toast.error("please fill the form");
       return;
     }
+    if (!validateEmail(email)) {
+      toast.error("Invalid email format");
+      return;
+    }
 
-    const data = new FormData();
-    data.append("email", email);
-    data.append("password", password);
-    data.append("username", username);
-    data.append("role", role);
-    data.append("userImage", image);
+    // const Data = new FormData();
+    // Data.append("email", email);
+    // Data.append("password", password);
+    // Data.append("username", username);
+    // Data.append("role", role);
+    // Data.append("userImage", image);
 
     try {
-      let data = await postCreateNewUser(
-        email,
-        password,
-        username,
-        role,
-        image
-      );
-      console.log(data);
-      if (data && data.EC === 0) {
-        toast.success(data.EM);
-      }
-      if (data && data.EC !== 0) {
-        toast.error(data.EM);
+      let res = await postCreateNewUser(email, password, username, role, image);
+      console.log(res);
+      if (res && res.data.EC === 0) {
+        toast.success(res.data.EM);
+      } else {
+        toast.error(res.data.EM);
       }
 
       setemail("");

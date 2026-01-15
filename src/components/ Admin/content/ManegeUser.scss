@@ -45,8 +45,9 @@
 .manage-user-container {
   .users-content {
     .btn-add-new {
-    }
-    .table-users-container {
+      button {
+        padding: 0 5;
+      }
     }
   }
 }

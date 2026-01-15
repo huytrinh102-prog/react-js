@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ModalCreateUser from "../ModalCreateUser";
 import "./ManegeUser.scss";
-
+import Tableuser from "./TableUser";
 const ManegeUser = (props) => {
   const [show, setShow] = useState(false);
   // const { show, handleClose } = props;
@@ -19,7 +19,7 @@ const ManegeUser = (props) => {
           </button>
         </div>
         <div className="table-users-container">
-          table users
+          <Tableuser />
           <ModalCreateUser show={show} handleClose={() => setShow(false)} />
         </div>
       </div>
