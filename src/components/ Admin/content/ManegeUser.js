@@ -2,8 +2,21 @@ import { useState } from "react";
 import ModalCreateUser from "../ModalCreateUser";
 import "./ManegeUser.scss";
 import Tableuser from "./TableUser";
+import { useEffect } from "react";
+import { getALLapi } from "../../../servies/apiServices";
+
 const ManegeUser = (props) => {
   const [show, setShow] = useState(false);
+  const [ListUser, setListUser] = useState([]);
+  useEffect(() => {
+    FetchGetallapi();
+  }, []);
+  const FetchGetallapi = async () => {
+    let res = await getALLapi();
+    if (res.data.EC === 0) {
+      setListUser(res.data.DT);
+    }
+  };
   // const { show, handleClose } = props;
   return (
     <div className="manage-user-container">
@@ -19,8 +32,12 @@ const ManegeUser = (props) => {
           </button>
         </div>
         <div className="table-users-container">
-          <Tableuser />
-          <ModalCreateUser show={show} handleClose={() => setShow(false)} />
+          <Tableuser ListUser={ListUser} />
+          <ModalCreateUser
+            FetchGetallapi={FetchGetallapi}
+            show={show}
+            handleClose={() => setShow(false)}
+          />
         </div>
       </div>
     </div>

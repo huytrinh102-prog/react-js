@@ -7,7 +7,8 @@ import Row from "react-bootstrap/Row";
 import { FcPlus } from "react-icons/fc";
 import { toast } from "react-toastify";
 import { postCreateNewUser } from "../../servies/apiServices";
-const ModalCreateUser = ({ show, handleClose }) => {
+
+const ModalCreateUser = ({ show, handleClose, FetchGetallapi }) => {
   // code xử lý create user
 
   // const [show, setShow] = useState(false);
@@ -46,6 +47,7 @@ const ModalCreateUser = ({ show, handleClose }) => {
 
     if (!isvalidateEmail || !email || !password || !role) {
       toast.error("please fill the form");
+
       return;
     }
     if (!validateEmail(email)) {
@@ -65,6 +67,7 @@ const ModalCreateUser = ({ show, handleClose }) => {
       console.log(res);
       if (res && res.data.EC === 0) {
         toast.success(res.data.EM);
+        await FetchGetallapi();
       } else {
         toast.error(res.data.EM);
       }
