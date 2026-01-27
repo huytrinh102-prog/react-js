@@ -1,4 +1,4 @@
-const Tableuser = ({ ListUser }) => {
+const Tableuser = ({ ListUser, handleUpdatebtn }) => {
   // const { ListUser } = ListUser;
   return (
     <>
@@ -22,7 +22,12 @@ const Tableuser = ({ ListUser }) => {
                 <td>{item.role}</td>
                 <td>
                   <button className="btn btn-secondary">View</button>
-                  <button className="btn btn-warning mx-3">Update</button>
+                  <button
+                    onClick={() => handleUpdatebtn(item)}
+                    className="btn btn-warning mx-3"
+                  >
+                    Update
+                  </button>
                   <button className="btn btn-danger">Delete</button>
                 </td>
               </tr>

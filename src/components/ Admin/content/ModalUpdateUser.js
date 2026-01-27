@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Col from "react-bootstrap/Col";
@@ -6,9 +6,15 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import { FcPlus } from "react-icons/fc";
 import { toast } from "react-toastify";
-import { postCreateNewUser } from "../../services/apiServices";
+import { putUpdateUser } from "../../../services/apiServices";
+import _ from "lodash";
 
-const ModalCreateUser = ({ show, handleClose, FetchGetallapi }) => {
+const ModalCreateUser = ({
+  selectedUser,
+  show,
+  handleClose,
+  FetchGetallapi,
+}) => {
   // code xử lý create user
 
   // const [show, setShow] = useState(false);
@@ -23,6 +29,18 @@ const ModalCreateUser = ({ show, handleClose, FetchGetallapi }) => {
   const [role, setrole] = useState("");
   const [image, setimage] = useState("");
 
+  useEffect(() => {
+    if (!_.isEmpty(selectedUser)) {
+      setemail(selectedUser.email);
+      setusername(selectedUser.username);
+      setrole(selectedUser.role);
+      setimage(selectedUser.image);
+      if (selectedUser.image) {
+        setpreview(`data:image/jpeg;base64,${selectedUser.image}`);
+      }
+    }
+  }, [selectedUser]);
+
   const handleimgchange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -34,39 +52,22 @@ const ModalCreateUser = ({ show, handleClose, FetchGetallapi }) => {
   // Posted by John Rutherford, modified by community. See post 'Timeline' for change history
   // Retrieved 2026-01-12, License - CC BY-SA 4.0
 
-  const validateEmail = (email) => {
-    return String(email)
-      .toLowerCase()
-      .match(
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      );
-  };
+  // const validateEmail = (email) => {
+  //   return String(email)
+  //     .toLowerCase()
+  //     .match(
+  //       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  //     );
+  // };
 
-  const handlesubmitCreateUser = async () => {
-    const isvalidateEmail = validateEmail(email);
-
-    if (!isvalidateEmail || !email || !password || !role) {
-      toast.error("please fill the form");
-
-      return;
-    }
-    if (!validateEmail(email)) {
-      toast.error("Invalid email format");
-      return;
-    }
-
-    // const Data = new FormData();
-    // Data.append("email", email);
-    // Data.append("password", password);
-    // Data.append("username", username);
-    // Data.append("role", role);
-    // Data.append("userImage", image);
+  const handlesubmitUpdateUser = async () => {
+    // const isvalidateEmail = validateEmail(email);
 
     try {
-      let res = await postCreateNewUser(email, password, username, role, image);
-      console.log(res);
+      let res = await putUpdateUser(selectedUser.id, username, role, image);
       if (res && res.data.EC === 0) {
         toast.success(res.data.EM);
+        handleClose();
         await FetchGetallapi();
       } else {
         toast.error(res.data.EM);
@@ -94,7 +95,7 @@ const ModalCreateUser = ({ show, handleClose, FetchGetallapi }) => {
         backdrop="static"
       >
         <Modal.Header closeButton>
-          <Modal.Title>Add new user</Modal.Title>
+          <Modal.Title>Update a User</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -105,7 +106,7 @@ const ModalCreateUser = ({ show, handleClose, FetchGetallapi }) => {
                   type="email"
                   placeholder="Enter email"
                   value={email}
-                  onChange={(e) => setemail(e.target.value)}
+                  disabled
                 />
               </Form.Group>
 
@@ -113,9 +114,9 @@ const ModalCreateUser = ({ show, handleClose, FetchGetallapi }) => {
                 <Form.Label>Password</Form.Label>
                 <Form.Control
                   type="password"
-                  placeholder="Password"
+                  placeholder="******"
                   value={password}
-                  onChange={(e) => setpassword(e.target.value)}
+                  disabled
                 />
               </Form.Group>
             </Row>
@@ -161,7 +162,8 @@ const ModalCreateUser = ({ show, handleClose, FetchGetallapi }) => {
               />
             </Form.Group>
             <div className="imageform-preview">
-              <span>Preview Image</span>
+              {!preview && <span>Preview Image</span>}
+              {/* <span>Preview Image</span> */}
               {preview && <img src={preview} alt="preview img" />}
             </div>
           </Form>
@@ -170,7 +172,7 @@ const ModalCreateUser = ({ show, handleClose, FetchGetallapi }) => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handlesubmitCreateUser}>
+          <Button variant="primary" onClick={handlesubmitUpdateUser}>
             Save
           </Button>
         </Modal.Footer>

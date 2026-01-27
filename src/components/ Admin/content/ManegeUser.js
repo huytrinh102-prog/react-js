@@ -3,11 +3,12 @@ import ModalCreateUser from "../ModalCreateUser";
 import "./ManegeUser.scss";
 import Tableuser from "./TableUser";
 import { useEffect } from "react";
-import { getALLapi } from "../../../servies/apiServices";
-
+import { getALLapi } from "../../../services/apiServices";
+import ModalUpdateUser from "./ModalUpdateUser";
 const ManegeUser = (props) => {
   const [show, setShow] = useState(false);
   const [ListUser, setListUser] = useState([]);
+  const [showModalUpdateUser, setShowModalUpdateUser] = useState(false);
   useEffect(() => {
     FetchGetallapi();
   }, []);
@@ -16,6 +17,11 @@ const ManegeUser = (props) => {
     if (res.data.EC === 0) {
       setListUser(res.data.DT);
     }
+  };
+  const [selectedUser, setSelectedUser] = useState(null);
+  const handleUpdatebtn = (user) => {
+    setSelectedUser(user);
+    setShowModalUpdateUser(true);
   };
   // const { show, handleClose } = props;
   return (
@@ -32,11 +38,17 @@ const ManegeUser = (props) => {
           </button>
         </div>
         <div className="table-users-container">
-          <Tableuser ListUser={ListUser} />
+          <Tableuser ListUser={ListUser} handleUpdatebtn={handleUpdatebtn} />
           <ModalCreateUser
             FetchGetallapi={FetchGetallapi}
             show={show}
             handleClose={() => setShow(false)}
+          />
+          <ModalUpdateUser
+            FetchGetallapi={FetchGetallapi}
+            show={showModalUpdateUser}
+            handleClose={() => setShowModalUpdateUser(false)}
+            selectedUser={selectedUser}
           />
         </div>
       </div>
