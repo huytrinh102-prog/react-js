@@ -1,3 +1,4 @@
+// import { data } from "react-router-dom";
 import axios from "../ultils/axiosCustomize";
 const postCreateNewUser = (email, password, username, role, image) => {
   const Data = new FormData();
@@ -26,4 +27,16 @@ const putUpdateUser = (id, username, role, image) => {
 const getALLapi = () => {
   return axios.get("api/v1/participant/all");
 };
-export { putUpdateUser, postCreateNewUser, getALLapi };
+const DeleteUser = (userId) => {
+  return axios.delete("api/v1/participant", { data: { id: userId } });
+};
+const getALLapiUserwithpaginate = (page, limit) => {
+  return axios.get(`api/v1/participant?page=${page}&limit=${limit}`);
+};
+export {
+  putUpdateUser,
+  postCreateNewUser,
+  getALLapi,
+  DeleteUser,
+  getALLapiUserwithpaginate,
+};

@@ -3,14 +3,25 @@ import ModalCreateUser from "../ModalCreateUser";
 import "./ManegeUser.scss";
 import Tableuser from "./TableUser";
 import { useEffect } from "react";
-import { getALLapi } from "../../../services/apiServices";
+import {
+  getALLapi,
+  getALLapiUserwithpaginate,
+} from "../../../services/apiServices";
 import ModalUpdateUser from "./ModalUpdateUser";
+import ModalViewUser from "./ModalViewUser";
+import ModalDeleteUser from "./ModalDeleteUser";
+import TablePaginate from "./TablePaginate";
 const ManegeUser = (props) => {
+  const [pageCount, setPageCount] = useState(0);
   const [show, setShow] = useState(false);
   const [ListUser, setListUser] = useState([]);
   const [showModalUpdateUser, setShowModalUpdateUser] = useState(false);
+  const [showModalViewUser, setShowModalViewUser] = useState(false);
+  const [showModalDeleteUser, setShowModalDeleteUser] = useState(false);
+  const LimitUser = 10;
   useEffect(() => {
-    FetchGetallapi();
+    //
+    FetchGetallapiwithPaginate(1);
   }, []);
   const FetchGetallapi = async () => {
     let res = await getALLapi();
@@ -18,10 +29,26 @@ const ManegeUser = (props) => {
       setListUser(res.data.DT);
     }
   };
+  const FetchGetallapiwithPaginate = async (page) => {
+    let res = await getALLapiUserwithpaginate(page, LimitUser);
+    if (res.data.EC === 0) {
+      console.log("dddd", res.data.DT);
+      setListUser(res.data.DT.users);
+      setPageCount(res.data.DT.totalPages);
+    }
+  };
   const [selectedUser, setSelectedUser] = useState(null);
   const handleUpdatebtn = (user) => {
     setSelectedUser(user);
     setShowModalUpdateUser(true);
+  };
+  const handleViewUser = (user) => {
+    setSelectedUser(user);
+    setShowModalViewUser(true);
+  };
+  const handleDeleteUser = (user) => {
+    setSelectedUser(user);
+    setShowModalDeleteUser(true);
   };
   // const { show, handleClose } = props;
   return (
@@ -38,7 +65,20 @@ const ManegeUser = (props) => {
           </button>
         </div>
         <div className="table-users-container">
-          <Tableuser ListUser={ListUser} handleUpdatebtn={handleUpdatebtn} />
+          {/* <Tableuser
+            ListUser={ListUser}
+            handleUpdatebtn={handleUpdatebtn}
+            handleViewUser={handleViewUser}
+            handleDeleteUser={handleDeleteUser}
+          /> */}
+          <TablePaginate
+            ListUser={ListUser}
+            handleUpdatebtn={handleUpdatebtn}
+            handleViewUser={handleViewUser}
+            handleDeleteUser={handleDeleteUser}
+            FetchGetallapiwithPaginate={FetchGetallapiwithPaginate}
+            pageCount={pageCount}
+          />
           <ModalCreateUser
             FetchGetallapi={FetchGetallapi}
             show={show}
@@ -50,9 +90,23 @@ const ManegeUser = (props) => {
             handleClose={() => setShowModalUpdateUser(false)}
             selectedUser={selectedUser}
           />
+          <ModalViewUser
+            FetchGetallapi={FetchGetallapi}
+            show={showModalViewUser}
+            handleClose={() => setShowModalViewUser(false)}
+            selectedUser={selectedUser}
+          />
+          <ModalDeleteUser
+            // FetchGetallapi={FetchGetallapi}
+            show={showModalDeleteUser}
+            setShow={setShowModalDeleteUser}
+            selectedUser={selectedUser}
+            FetchGetallapi={FetchGetallapi}
+          />
         </div>
       </div>
     </div>
   );
 };
+
 export default ManegeUser;
