@@ -8,7 +8,14 @@ import { FcPlus } from "react-icons/fc";
 import { toast } from "react-toastify";
 import { postCreateNewUser } from "../../services/apiServices";
 
-const ModalCreateUser = ({ show, handleClose, FetchGetallapi }) => {
+const ModalCreateUser = ({
+  show,
+  handleClose,
+  FetchGetallapi,
+  FetchGetallapiwithPaginate,
+  currentPage,
+  setCurrentPage,
+}) => {
   // code xử lý create user
 
   // const [show, setShow] = useState(false);
@@ -67,7 +74,8 @@ const ModalCreateUser = ({ show, handleClose, FetchGetallapi }) => {
       console.log(res);
       if (res && res.data.EC === 0) {
         toast.success(res.data.EM);
-        await FetchGetallapi();
+        setCurrentPage(1);
+        FetchGetallapiwithPaginate(1);
       } else {
         toast.error(res.data.EM);
       }

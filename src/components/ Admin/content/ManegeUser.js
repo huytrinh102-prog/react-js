@@ -18,6 +18,7 @@ const ManegeUser = (props) => {
   const [showModalUpdateUser, setShowModalUpdateUser] = useState(false);
   const [showModalViewUser, setShowModalViewUser] = useState(false);
   const [showModalDeleteUser, setShowModalDeleteUser] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
   const LimitUser = 10;
   useEffect(() => {
     //
@@ -78,23 +79,34 @@ const ManegeUser = (props) => {
             handleDeleteUser={handleDeleteUser}
             FetchGetallapiwithPaginate={FetchGetallapiwithPaginate}
             pageCount={pageCount}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
           />
           <ModalCreateUser
             FetchGetallapi={FetchGetallapi}
             show={show}
             handleClose={() => setShow(false)}
+            FetchGetallapiwithPaginate={FetchGetallapiwithPaginate}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
           />
           <ModalUpdateUser
             FetchGetallapi={FetchGetallapi}
             show={showModalUpdateUser}
             handleClose={() => setShowModalUpdateUser(false)}
             selectedUser={selectedUser}
+            FetchGetallapiwithPaginate={FetchGetallapiwithPaginate}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
           />
           <ModalViewUser
             FetchGetallapi={FetchGetallapi}
             show={showModalViewUser}
             handleClose={() => setShowModalViewUser(false)}
             selectedUser={selectedUser}
+            FetchGetallapiwithPaginate={FetchGetallapiwithPaginate}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
           />
           <ModalDeleteUser
             // FetchGetallapi={FetchGetallapi}
@@ -102,6 +114,9 @@ const ManegeUser = (props) => {
             setShow={setShowModalDeleteUser}
             selectedUser={selectedUser}
             FetchGetallapi={FetchGetallapi}
+            FetchGetallapiwithPaginate={FetchGetallapiwithPaginate}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
           />
         </div>
       </div>

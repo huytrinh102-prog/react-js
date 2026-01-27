@@ -9,9 +9,12 @@ const TablePaginate = ({
   handleDeleteUser,
   FetchGetallapiwithPaginate,
   pageCount,
+  currentPage,
+  setCurrentPage,
 }) => {
   const handlePageClick = (event) => {
-    FetchGetallapiwithPaginate(+event.selected + 1);
+    setCurrentPage(+event.selected + 1);
+    FetchGetallapiwithPaginate(event.selected + 1);
     console.log(`User requested page number ${event.selected}}`);
   };
 
@@ -86,6 +89,7 @@ const TablePaginate = ({
           containerClassName="pagination"
           activeClassName="active"
           renderOnZeroPageCount={null}
+          forcePage={currentPage - 1}
         />
       </div>
     </>

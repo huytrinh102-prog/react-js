@@ -3,17 +3,23 @@ import Modal from "react-bootstrap/Modal";
 import { DeleteUser } from "../../../services/apiServices";
 import { toast } from "react-toastify";
 const ModalDeleteUser = (props) => {
-  const { show, setShow, selectedUser, FetchGetallapi } = props;
+  const {
+    show,
+    setShow,
+    selectedUser,
+    FetchGetallapiwithPaginate,
+    currentPage,
+  } = props;
 
   const handleClose = () => setShow(false);
-  const handleSubmitDeleteUser = async () => {
+  const handleSubmitDeleteUser = async (event) => {
     // const isvalidateEmail = validateEmail(email);
-
+    console.log(`User requested page number ${event.selected}}`);
     let res = await DeleteUser(selectedUser.id);
     if (res && res.data.EC === 0) {
       toast.success(res.data.EM);
       handleClose();
-      await FetchGetallapi();
+      await FetchGetallapiwithPaginate(currentPage);
     } else {
       toast.error(res.data.EM);
     }

@@ -14,6 +14,8 @@ const ModalCreateUser = ({
   show,
   handleClose,
   FetchGetallapi,
+  FetchGetallapiwithPaginate,
+  currentPage,
 }) => {
   // code xử lý create user
 
@@ -68,7 +70,7 @@ const ModalCreateUser = ({
       if (res && res.data.EC === 0) {
         toast.success(res.data.EM);
         handleClose();
-        await FetchGetallapi();
+        await FetchGetallapiwithPaginate(currentPage);
       } else {
         toast.error(res.data.EM);
       }
