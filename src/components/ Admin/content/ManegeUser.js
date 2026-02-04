@@ -20,10 +20,12 @@ const ManegeUser = (props) => {
   const [showModalDeleteUser, setShowModalDeleteUser] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const LimitUser = 10;
+
   useEffect(() => {
     //
     FetchGetallapiwithPaginate(1);
   }, []);
+
   const FetchGetallapi = async () => {
     let res = await getALLapi();
     if (res.data.EC === 0) {

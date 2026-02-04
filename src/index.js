@@ -1,39 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { Provider } from 'react-redux';
-import store from './redux/store';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter ,
-  Routes ,
-  Route
-} from 'react-router-dom'
-import User from './components/User/User';
-import Admin from "./components/ Admin/Admin"
-import HomePage from './components/Home/HomePage';
-import ManegeUser from './components/ Admin/content/ManegeUser';
-import Dashboard from './components/ Admin/content/DashBoard';
+import React from "react";
+import ReactDOM from "react-dom/client";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import reportWebVitals from "./reportWebVitals";
+import { Provider } from "react-redux";
+import store from "./redux/store";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter } from "react-router-dom";
+import Layout from "./layout";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     {/* <React.StrictMode> */}
-      <BrowserRouter>
-       <Routes>
-        <Route path="/" element={<App />} >
-        <Route index element={<HomePage />} />
-         <Route path="/users" element={<User />} />
-        </Route>
-        <Route path="/admins" element={<Admin />} >
-          <Route path="ManegeUser" element={<ManegeUser />} />
-          <Route path="Dashboard" element={<Dashboard />} />
-        </Route>
-
-      </Routes>
-      </BrowserRouter>
+    <BrowserRouter>
+      <Layout />
+    </BrowserRouter>
     {/* </React.StrictMode> */}
-  </Provider>
+  </Provider>,
 );
 
 // If you want to start measuring performance in your app, pass a function

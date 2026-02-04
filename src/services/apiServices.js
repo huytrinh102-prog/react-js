@@ -33,10 +33,18 @@ const DeleteUser = (userId) => {
 const getALLapiUserwithpaginate = (page, limit) => {
   return axios.get(`api/v1/participant?page=${page}&limit=${limit}`);
 };
+const postLogin = (email, password) => {
+  return axios.post(`api/v1/login`, { email, password });
+};
+const postRegister = (email, password, userName) => {
+  return axios.post(`/api/v1/register`, { email, password, userName });
+};
 export {
   putUpdateUser,
   postCreateNewUser,
   getALLapi,
   DeleteUser,
   getALLapiUserwithpaginate,
+  postLogin,
+  postRegister,
 };

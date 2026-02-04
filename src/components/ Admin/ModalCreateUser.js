@@ -45,7 +45,7 @@ const ModalCreateUser = ({
     return String(email)
       .toLowerCase()
       .match(
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       );
   };
 
@@ -61,13 +61,6 @@ const ModalCreateUser = ({
       toast.error("Invalid email format");
       return;
     }
-
-    // const Data = new FormData();
-    // Data.append("email", email);
-    // Data.append("password", password);
-    // Data.append("username", username);
-    // Data.append("role", role);
-    // Data.append("userImage", image);
 
     try {
       let res = await postCreateNewUser(email, password, username, role, image);
