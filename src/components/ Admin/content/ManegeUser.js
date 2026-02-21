@@ -1,7 +1,6 @@
 import { useState } from "react";
 import ModalCreateUser from "../ModalCreateUser";
 import "./ManegeUser.scss";
-import Tableuser from "./TableUser";
 import { useEffect } from "react";
 import {
   getALLapi,

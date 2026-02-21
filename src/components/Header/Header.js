@@ -15,7 +15,7 @@ const Header = () => {
   const register = () => {
     navigate("/register");
   };
-  const islogin = useSelector((state) => state.user.isLogin);
+  const islogin = useSelector((state) => state?.user?.isLogin);
   const dispatch = useDispatch();
 
   return (

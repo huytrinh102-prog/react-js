@@ -1,0 +1,67 @@
+.list-quiz-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  padding: 24px 0;
+}
+
+.list-quiz-content {
+  display: flex;
+  justify-content: center;
+}
+
+.list-quiz-content .card {
+  width: 100%;
+  max-width: 320px;
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.list-quiz-content .card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.14);
+}
+
+.list-quiz-content .card-img-top {
+  height: 180px;
+  object-fit: cover;
+}
+
+.list-quiz-content .card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.list-quiz-content .card-title {
+  font-weight: 700;
+}
+
+.list-quiz-content .btn-primary {
+  margin-top: auto;
+  border-radius: 999px;
+  padding: 8px 16px;
+}
+.list-quiz-container {
+  margin-top: 100px; // đẩy xuống khỏi header
+  padding: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  justify-items: center; // canh giữa card
+}
+
+.list-quiz-content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.noquiz {
+  display: flex;
+  font-size: larger;
+}

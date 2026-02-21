@@ -1,45 +1,29 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import { FaHeart } from "react-icons/fa";
 import { DiReact } from "react-icons/di";
 import { MdDashboard } from "react-icons/md";
 import { Link } from "react-router-dom";
+import "./SideBar.scss";
 
 const WSidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [darkTheme, setDarkTheme] = useState(false);
 
-  const sidebarStyle = {
-    width: collapsed ? "80px" : "250px",
-    height: "100vh",
-    backgroundColor: darkTheme ? "#0b2948" : "#ffffff",
-    color: darkTheme ? "#8ba1b7" : "#607489",
-    transition: "width 0.3s",
-  };
-
   return (
-    <div style={{ display: "flex", height: "100vh" }}>
+    <div className={`w-sidebar-layout ${darkTheme ? "dark" : "light"}`}>
       <Sidebar
         collapsed={collapsed}
-        style={{
-          height: "100vh",
-          backgroundColor: darkTheme ? "#0b2948" : "#ffffff",
-          color: darkTheme ? "#8ba1b7" : "#607489",
-          width: collapsed ? "80px" : "250px",
-        }}
+        width="250px"
+        collapsedWidth="80px"
+        className="w-sidebar-root"
       >
         {/* FLEX WRAPPER – CÁI QUAN TRỌNG NHẤT */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            height: "100%",
-          }}
-        >
+        <div className="w-sidebar-inner">
           {/* MENU TRÊN */}
           <Menu>
             <MenuItem
-              component={<Link to="/admins" />}
+              component={<Link to="/" />}
               icon={<DiReact size="3em" color="pink" />}
             >
               ユウ
@@ -48,21 +32,24 @@ const WSidebar = () => {
 
             <SubMenu label="music" icon={<FaHeart />}>
               <MenuItem component={<Link to="/admins/ManegeUser" />}>
-                yuu music
+                Manage USER
               </MenuItem>
-              <MenuItem>yuu list</MenuItem>
-              <MenuItem>yuu hot mv</MenuItem>
+              <MenuItem component={<Link to="/admins/Manage-quizzes" />}>
+                Manage Quiz
+              </MenuItem>
+              <MenuItem component={<Link to="/admins/Manage-questions" />}>
+                Manage Answer
+              </MenuItem>
             </SubMenu>
           </Menu>
 
           {/* ĐẨY XUỐNG */}
-          <div style={{ flexGrow: 1 }} />
+          <div className="w-sidebar-grow" />
 
           {/* MENU DƯỚI – LUÔN Ở CUỐI */}
           <hr />
           <Menu>
             <MenuItem
-              component="a"
               icon={<DiReact size="2em" />}
               href="https://www.youtube.com/@YU-H8129/videos"
               target="_blank"
@@ -73,14 +60,17 @@ const WSidebar = () => {
           </Menu>
         </div>
       </Sidebar>
-      <main style={{ flex: 1, padding: "20px" }}>
-        <div style={{ marginBottom: "16px" }}>
-          <button onClick={() => setCollapsed(!collapsed)}>
+      <main className="w-sidebar-main">
+        <div className="w-sidebar-toolbar">
+          <button
+            className="w-btn w-btn-primary"
+            onClick={() => setCollapsed(!collapsed)}
+          >
             {collapsed ? "SHOW" : "HIDE"}{" "}
           </button>
           <button
+            className="w-btn w-btn-ghost"
             onClick={() => setDarkTheme(!darkTheme)}
-            style={{ marginLeft: "12px" }}
           >
             {" "}
             {darkTheme ? "Light Theme" : "Dark Theme"}

@@ -1,0 +1,84 @@
+.manage-container {
+  min-height: auto;
+  padding: 16px 20px 8px;
+  background:
+    radial-gradient(circle at 0% 0%, #eaf3ff 0%, transparent 35%),
+    radial-gradient(circle at 100% 100%, #e8fff1 0%, transparent 35%), #f7f9fc;
+
+  .title {
+    font-size: 30px;
+    margin: 0 0 12px;
+    font-weight: 700;
+    color: #18324a;
+  }
+
+  form {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  fieldset {
+    background: #fff;
+    border: 1px solid #dfe6ef !important;
+    border-radius: 16px !important;
+    padding: 24px !important;
+    box-shadow: 0 12px 28px rgba(16, 36, 70, 0.08);
+
+    .form-floating:first-of-type {
+      margin-top: 16px;
+    }
+  }
+
+  legend {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: #18324a;
+    margin-bottom: 0;
+  }
+
+  .form-floating > .form-control {
+    border-radius: 12px;
+    border: 1px solid #d6dee8;
+    height: 56px;
+    font-size: 0.95rem;
+  }
+
+  .form-floating > label {
+    color: #66768a;
+    font-weight: 500;
+  }
+
+  .form-control:focus {
+    border-color: #4a90ff;
+    box-shadow: 0 0 0 0.2rem rgba(74, 144, 255, 0.15);
+  }
+
+  .btn-submit {
+    margin-top: 16px;
+    border-radius: 10px;
+    padding: 10px 18px;
+    font-weight: 600;
+  }
+}
+
+.quizTable {
+  margin-top: 8px !important;
+}
+
+.table {
+  margin-bottom: 0;
+
+  .button {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  .button button {
+    width: auto;
+    min-width: 72px;
+    border-radius: 8px;
+    padding: 4px 10px;
+  }
+}

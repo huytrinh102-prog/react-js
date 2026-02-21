@@ -5,12 +5,15 @@ import { postLogin } from "../../services/apiServices";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { loginSuccess } from ".//../../redux/userSlice";
-
+import { ImSpinner } from "react-icons/im";
+import NProgress from "nprogress";
+import { store } from "../../redux/store";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
   const Homepagebtn = () => {
     navigate("/");
   };
@@ -25,25 +28,34 @@ const Login = () => {
       );
   };
   const handleLogin = async () => {
+    if (isLoading) return;
+    setIsLoading(true);
     if (!email || !password) {
+      setIsLoading(false);
       toast.error("please fill the form");
-
+      NProgress.done();
       return;
     }
     if (!validateEmail(email)) {
+      setIsLoading(false);
       toast.error("Invalid email format");
+      NProgress.done();
       return;
     }
 
     let res = await postLogin(email, password);
-    console.log("dhdhd", res);
 
     if (res && res.data.EC === 0) {
       dispatch(loginSuccess(res.data));
       toast.success(res.data.EM);
+      setIsLoading(false);
       navigate("/");
+      console.log("aaaa1", store.getState().user.account.access_token);
+      NProgress.done();
     } else {
+      setIsLoading(false);
       toast.error(res.data.EM);
+      NProgress.done();
     }
   };
 
@@ -82,7 +94,10 @@ const Login = () => {
 
             <div className="forgot">Forgot your password?</div>
 
-            <button className="btn-login">Login with 『YU』</button>
+            <button className="btn-login" disabled={isLoading}>
+              {isLoading && <ImSpinner className="spinner" />}
+              Login with 『YU』
+            </button>
           </form>
         </div>
 

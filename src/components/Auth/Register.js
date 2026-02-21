@@ -4,7 +4,7 @@ import "./Loginconver.scss";
 import { postRegister } from "./../../services/apiServices";
 import { toast } from "react-toastify";
 import { VscEye, VscEyeClosed } from "react-icons/vsc";
-const Regester = () => {
+const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userName, setUserName] = useState("");
@@ -111,4 +111,4 @@ const Regester = () => {
   );
 };
 
-export default Regester;
+export default Register;

@@ -1,6 +1,4 @@
 import ReactPaginate from "https://cdn.skypack.dev/react-paginate@7.1.3";
-import { useState } from "react";
-import { useEffect } from "react";
 
 const TablePaginate = ({
   ListUser,
