@@ -1,34 +1,40 @@
 .list-quiz-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 20px;
-  padding: 24px 0;
+  gap: 18px;
+  padding: 6px 2px 22px;
+  justify-items: stretch;
 }
 
 .list-quiz-content {
+  width: 100%;
   display: flex;
   justify-content: center;
 }
 
 .list-quiz-content .card {
   width: 100%;
-  max-width: 320px;
-  border: none;
-  border-radius: 16px;
+  max-width: 360px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(14px);
   transition:
     transform 0.2s ease,
-    box-shadow 0.2s ease;
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .list-quiz-content .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.14);
+  transform: translateY(-4px);
+  border-color: rgba(14, 165, 233, 0.30);
+  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.45);
 }
 
 .list-quiz-content .card-img-top {
-  height: 180px;
+  height: 190px;
   object-fit: cover;
 }
 
@@ -36,32 +42,43 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  padding: 16px 16px 18px;
+  color: rgba(255, 255, 255, 0.88);
 }
 
 .list-quiz-content .card-title {
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.list-quiz-content .card-text {
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .list-quiz-content .btn-primary {
   margin-top: auto;
+  border: none;
   border-radius: 999px;
-  padding: 8px 16px;
-}
-.list-quiz-container {
-  margin-top: 100px; // đẩy xuống khỏi header
-  padding: 24px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 20px;
-  justify-items: center; // canh giữa card
+  padding: 10px 16px;
+  font-weight: 750;
+  background: linear-gradient(135deg, #0ea5e9, #fb7185);
 }
 
-.list-quiz-content {
-  width: 100%;
-  display: flex;
-  justify-content: center;
+.list-quiz-content .btn-primary:hover {
+  filter: saturate(1.08);
 }
+
 .noquiz {
   display: flex;
-  font-size: larger;
+  min-height: 280px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  border: 1px dashed rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(14px);
+  font-size: 18px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.78);
 }

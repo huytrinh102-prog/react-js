@@ -1,10 +1,41 @@
 .login-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  min-height: 100dvh;
+  background:
+    radial-gradient(
+      circle at 20% 10%,
+      rgba(14, 165, 233, 0.45),
+      transparent 45%
+    ),
+    radial-gradient(
+      circle at 85% 25%,
+      rgba(251, 113, 133, 0.35),
+      transparent 45%
+    ),
+    linear-gradient(135deg, #0b1220, #0f172a, #0b1220);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Inter", sans-serif;
+  font-family:
+    "Space Grotesk",
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
+  padding: 18px 12px calc(18px + env(safe-area-inset-bottom));
+  position: relative;
+  .language {
+    position: absolute;
+    top: 20px;
+    right: 60px;
+    color: #fff;
+  }
+
+  .language .dropdown-toggle,
+  .language .nav-link {
+    color: #fff !important;
+  }
 }
 
 .login-box {
@@ -104,12 +135,35 @@
 }
 .regester-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  min-height: 100dvh;
+  background:
+    radial-gradient(
+      circle at 20% 10%,
+      rgba(14, 165, 233, 0.45),
+      transparent 45%
+    ),
+    radial-gradient(
+      circle at 85% 25%,
+      rgba(251, 113, 133, 0.35),
+      transparent 45%
+    ),
+    linear-gradient(135deg, #0b1220, #0f172a, #0b1220);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Inter", sans-serif;
+  font-family:
+    "Space Grotesk",
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
   position: relative;
+  padding: 18px 12px calc(18px + env(safe-area-inset-bottom));
+  .language .dropdown-toggle,
+  .language .nav-link {
+    color: #fff !important;
+  }
 }
 
 .regester-box {

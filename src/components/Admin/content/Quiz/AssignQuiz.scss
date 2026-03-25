@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 70vh;
+  width: 100%;
+  .Assignbtn {
+    margin-top: 20px;
+    width: 100%;
+    button {
+      margin-left: 10px;
+      width: 100px;
+    }
+  }
+  .select {
+    display: flex;
+    width: 100%;
+    text-align: center;
+    justify-content: space-around;
+
+    .q-field-1 {
+      width: 48%;
+    }
+    .q-field-2 {
+      width: 48%;
+    }
+  }
+}

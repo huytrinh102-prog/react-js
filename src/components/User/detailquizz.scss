@@ -1,17 +1,19 @@
 .detail-quiz-container {
-  --bg: #f6f8fc;
-  --card: #ffffff;
-  --text: #18212f;
-  --muted: #5f6b7a;
-  --line: #e6ebf2;
-  --primary: #0d6efd;
-  --shadow: 0 10px 30px rgba(18, 34, 63, 0.08);
+  --bg: #0b1220;
+  --card: rgba(255, 255, 255, 0.08);
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.72);
+  --line: rgba(255, 255, 255, 0.14);
+  --primary: #0ea5e9;
+  --shadow: 0 22px 70px rgba(0, 0, 0, 0.45);
 
   min-height: 100vh;
+  min-height: 100dvh;
   padding: 32px;
   background:
-    radial-gradient(circle at 10% 10%, #eaf1ff 0%, transparent 35%),
-    radial-gradient(circle at 90% 90%, #eefaf3 0%, transparent 35%), var(--bg);
+    radial-gradient(circle at 20% 10%, rgba(14, 165, 233, 0.35), transparent 45%),
+    radial-gradient(circle at 85% 25%, rgba(251, 113, 133, 0.28), transparent 45%),
+    linear-gradient(135deg, #0b1220, #0f172a, #0b1220);
   display: grid;
   grid-template-columns: 2.1fr 1fr;
   gap: 24px;
@@ -23,6 +25,7 @@
   border-radius: 18px;
   box-shadow: var(--shadow);
   padding: 24px;
+  backdrop-filter: blur(14px);
 }
 
 .quiz-container .title {
@@ -34,7 +37,7 @@
 
 .quiz-container hr {
   border: 0;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
   margin: 12px 0 20px;
 }
 
@@ -58,12 +61,12 @@
   border-radius: 12px;
   padding: 12px 14px;
   transition: all 0.2s ease;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .q-content .form-check:hover {
-  border-color: #cfd9e8;
-  box-shadow: 0 6px 18px rgba(18, 34, 63, 0.06);
+  border-color: rgba(14, 165, 233, 0.35);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.32);
 }
 
 .footer {
@@ -88,6 +91,10 @@
   position: sticky;
   top: 24px;
   height: fit-content;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  backdrop-filter: blur(14px);
 }
 
 .image {
@@ -98,13 +105,106 @@
   border-radius: 14px;
   overflow: hidden;
   border: 1px solid var(--line);
-  background: #f2f5fb;
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .image .image-child {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.countdown-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  .countdown {
+    height: 20%;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    width: 100%;
+    margin: 0;
+    gap: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .title {
+      color: rgba(255, 255, 255, 0.78);
+      font-weight: 700;
+      margin-top: 10px;
+      margin: 0;
+      gap: 0;
+    }
+    .timer {
+      font-size: 30px;
+      text-align: center;
+      gap: 0;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.92);
+    }
+  }
+  .question-number {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: auto;
+    align-items: center;
+  }
+  .title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.82);
+    font-weight: 800;
+  }
+  .numberct {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 15px;
+    width: 100%;
+    height: auto;
+    margin-left: 50px;
+    margin: 0;
+
+    .number {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      justify-content: center;
+      align-items: center;
+      font-weight: 600;
+      font-size: larger;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.86);
+      cursor: pointer;
+      &:hover {
+        background: rgba(14, 165, 233, 0.18);
+        border-color: rgba(14, 165, 233, 0.35);
+        transform: scale(1.2);
+      }
+      &.active {
+        background: rgba(14, 165, 233, 0.28);
+        border-color: rgba(14, 165, 233, 0.6);
+        color: #ffffff;
+      }
+      &.answered {
+        border-color: rgba(16, 185, 129, 0.7);
+        background: rgba(16, 185, 129, 0.18);
+      }
+    }
+  }
 }
 
 /* Mobile */

@@ -3,29 +3,33 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { getQuizByUser } from "./../../services/apiServices";
 import "./ListQuiz.scss";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const ListQuiz = () => {
   const navigate = useNavigate();
   const [arrQuiz, setArrQuiz] = useState([]);
-  const location = useLocation();
+
   useEffect(() => {
+    let cancelled = false;
+    const getQuizData = async () => {
+      const res = await getQuizByUser();
+      if (cancelled) return;
+      setArrQuiz(res?.data?.DT || []);
+    };
     getQuizData();
+    return () => {
+      cancelled = true;
+    };
   }, []);
-  const getQuizData = async () => {
-    let res = await getQuizByUser();
-    console.log("location ", location);
-    setArrQuiz(res.data.DT);
-  };
 
   return (
-    <div className="list-quiz-container container">
+    <div className="list-quiz-container">
       {arrQuiz &&
         arrQuiz.length > 0 &&
         arrQuiz.map((quiz, index) => {
           return (
             <div key={index} className="list-quiz-content">
-              <Card style={{ width: "18rem" }}>
+              <Card>
                 <Card.Img
                   variant="top"
                   src={`data:image/jpeg;base64,${quiz.image}`}
@@ -49,7 +53,7 @@ const ListQuiz = () => {
           );
         })}
       {arrQuiz && arrQuiz.length === 0 && (
-        <div className="noquiz container">You dont have any quiz now</div>
+        <div className="noquiz">You don’t have any quizzes yet.</div>
       )}
     </div>
   );

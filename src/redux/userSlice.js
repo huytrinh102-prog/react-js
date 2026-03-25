@@ -24,9 +24,12 @@ const userSlice = createSlice({
       state.account = action.payload.DT;
       state.isLogin = true;
     },
+    updateAccount: (state, action) => {
+      state.account = { ...state.account, ...(action.payload || {}) };
+    },
     logout: () => INITIAL_STATE,
   },
 });
 
-export const { loginSuccess, logout } = userSlice.actions;
+export const { loginSuccess, updateAccount, logout } = userSlice.actions;
 export default userSlice.reducer;

@@ -17,20 +17,12 @@ const ModalCreateUser = ({
   FetchGetallapiwithPaginate,
   currentPage,
 }) => {
-  // code xử lý create user
-
-  // const [show, setShow] = useState(false);
-
-  // const handleClose = () => setShow(false);
-  // const handleShow = () => setShow(true);
-
   const [preview, setpreview] = useState("");
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [username, setusername] = useState("");
   const [role, setrole] = useState("");
   const [image, setimage] = useState("");
-
   useEffect(() => {
     if (!_.isEmpty(selectedUser)) {
       setemail(selectedUser.email);

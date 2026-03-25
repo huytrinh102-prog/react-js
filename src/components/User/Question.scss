@@ -1,0 +1,21 @@
+.Q-container {
+  height: 70vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .q-image {
+    width: 100%;
+    height: 45%;
+    display: flex;
+    justify-content: center;
+
+    margin-bottom: 20px;
+
+    .image {
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+    }
+  }
+}

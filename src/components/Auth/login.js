@@ -8,6 +8,7 @@ import { loginSuccess } from ".//../../redux/userSlice";
 import { ImSpinner } from "react-icons/im";
 import NProgress from "nprogress";
 import { store } from "../../redux/store";
+import Language from "../Header/Language";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -61,6 +62,7 @@ const Login = () => {
 
   return (
     <div className="login-container">
+      <Language className="language" />
       <div className="login-box">
         <h1 className="title">AZ / ユウ - 8129</h1>
         <p className="welcome">Welcome to YUU's page</p>

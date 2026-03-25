@@ -5,8 +5,6 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import _ from "lodash";
-import { putUpdateUser } from "../../../services/apiServices";
-import { toast } from "react-toastify";
 
 const ModalCreateUser = ({
   selectedUser,
@@ -23,55 +21,20 @@ const ModalCreateUser = ({
 
   const [preview, setpreview] = useState("");
   const [email, setemail] = useState("");
-  const [password, setpassword] = useState("");
+  const [password] = useState("");
   const [username, setusername] = useState("");
   const [role, setrole] = useState("");
-  const [image, setimage] = useState("");
 
   useEffect(() => {
     if (!_.isEmpty(selectedUser)) {
       setemail(selectedUser.email);
       setusername(selectedUser.username);
       setrole(selectedUser.role);
-      setimage(selectedUser.image);
       if (selectedUser.image) {
         setpreview(`data:image/jpeg;base64,${selectedUser.image}`);
       }
     }
   }, [selectedUser]);
-
-  const handleimgchange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setimage(file);
-      setpreview(URL.createObjectURL(file));
-    }
-  };
-
-  const handlesubmitUpdateUser = async () => {
-    // const isvalidateEmail = validateEmail(email);
-
-    try {
-      let res = await putUpdateUser(selectedUser.id, username, role, image);
-      if (res && res.data.EC === 0) {
-        toast.success(res.data.EM);
-        handleClose();
-        await FetchGetallapi();
-      } else {
-        toast.error(res.data.EM);
-      }
-
-      setemail("");
-      setpassword("");
-      setusername("");
-      setrole("");
-      setimage("");
-      setpreview("");
-      handleClose();
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   return (
     <>

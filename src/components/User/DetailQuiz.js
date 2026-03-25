@@ -8,6 +8,8 @@ import { useLocation } from "react-router-dom";
 import ".//detailquizz.scss";
 import Question from "./Question";
 import ModalSubmitQuiz from ".//ModalSubmitQuiz";
+import Countdown from "./Countdown";
+import _ from "lodash";
 
 const DetailQuiz = (props) => {
   const params = useParams();
@@ -28,6 +30,7 @@ const DetailQuiz = (props) => {
           ? current.filter((id) => id !== answerId)
           : [...current, answerId],
       };
+
       return next;
     });
   };
@@ -59,11 +62,16 @@ const DetailQuiz = (props) => {
           };
         }
         grouped[item.id].answers.push(item.answers);
+        grouped[item.id].answers = _.orderBy(
+          grouped[item.id].answers,
+          ["order"],
+          ["asc"],
+        );
       }
+
       const resul = Object.values(grouped);
       setDataQuiz(resul);
     };
-
     fetchQuestion();
   }, [quizId]);
 
@@ -83,7 +91,7 @@ const DetailQuiz = (props) => {
       });
     payload.answers = answers;
     let res = await submitQuestionQuiz(payload);
-    console.log("res", res);
+
     setIsShow(true);
     if (res.data.EC === 0)
       setQuizResult({
@@ -132,7 +140,16 @@ const DetailQuiz = (props) => {
           </button>
         </div>
       </div>
-      <div className="count-down">coundown</div>
+      <div className="count-down">
+        <Countdown
+          isSelected={isSelected}
+          quizId={quizId}
+          dataQuiz={dataQuiz}
+          setIndex={setIndex}
+          handleSumit={handleSumit}
+          index={index}
+        />
+      </div>
       <ModalSubmitQuiz
         QuizResult={QuizResult}
         show={isShow}

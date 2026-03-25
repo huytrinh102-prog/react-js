@@ -1,26 +1,29 @@
 import "./detailquizz.scss";
 import _ from "lodash";
+import "./Question.scss";
 const Question = (props) => {
   const { data, index, isSelected } = props;
   if (_.isEmpty(data)) return;
   return (
-    <>
-      {data.image ? (
-        <div className="image">
-          {data && data.image && (
-            <img
-              alt="index"
-              className="image-child"
-              src={`data:image/jpeg;base64,${data.image}`}
-            />
-          )}
-        </div>
-      ) : (
-        <div></div>
-      )}
+    <div className="Q-container">
+      <div className="q-image">
+        {data.image ? (
+          <div className="image">
+            {data && data.image && (
+              <img
+                alt="index"
+                className="image-child"
+                src={`data:image/jpeg;base64,${data.image}`}
+              />
+            )}
+          </div>
+        ) : (
+          <div></div>
+        )}
+      </div>
 
       <div className="question">
-        Question {index} : {data.description}
+        Question {index + 1} : {data.description}
       </div>
       <div className="answer">
         {data?.answers &&
@@ -48,7 +51,7 @@ const Question = (props) => {
             // return <div key={`answer-${index}`}>{a.description}</div>;
           })}
       </div>
-    </>
+    </div>
   );
 };
 export default Question;

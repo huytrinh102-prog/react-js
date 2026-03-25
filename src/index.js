@@ -9,6 +9,7 @@ import { BrowserRouter } from "react-router-dom";
 import Layout from "./layout";
 import "nprogress/nprogress.css";
 import { PersistGate } from "redux-persist/integration/react";
+import "./i18n/i18n";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

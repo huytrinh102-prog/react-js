@@ -3,27 +3,16 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { NavLink } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/userSlice";
 import { useSelector } from "react-redux";
 import { Logout } from "../../services/apiServices";
 import { toast } from "react-toastify";
 import Language from "./Language";
-import ModalProfile from "./Profile";
-import { useState } from "react";
+import "./Admin.scss";
 const Header = () => {
-  const navigate = useNavigate();
-  const loginbtn = () => {
-    navigate("/login");
-  };
-  const register = () => {
-    navigate("/register");
-  };
-  const islogin = useSelector((state) => state?.user?.isLogin);
   const a = useSelector((state) => state?.user);
   const dispatch = useDispatch();
-  const [isShowProfile, setIsShowProfile] = useState(false);
 
   const handleLogout = async () => {
     const email = a?.account?.email;
@@ -43,15 +32,10 @@ const Header = () => {
       localStorage.removeItem("persist:root");
     } catch (e) {}
 
-    // Use router navigation (no full reload).
-    navigate("/login", { replace: true });
+    // Hard redirect is OK inside admin shell.
+    window.location.assign("/login");
   };
-  const handleClose = () => {
-    setIsShowProfile(false);
-  };
-  const handleShow = () => {
-    setIsShowProfile(true);
-  };
+
   return (
     <>
       <Navbar expand="lg" className="app-navbar" collapseOnSelect>
@@ -88,56 +72,21 @@ const Header = () => {
                 Admin
               </NavLink>
             </Nav>
-            {!islogin ? (
-              <Nav>
-                <div className="login-register">
-                  <button
-                    type="button"
-                    onClick={() => loginbtn()}
-                    className="btn-login"
-                  >
-                    log in
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => register()}
-                    className="btn-signup"
-                  >
-                    sign up
-                  </button>
-                </div>
-              </Nav>
-            ) : (
-              <Nav>
-                <NavDropdown title="Setting" id="basic-nav-dropdown">
-                  <NavDropdown.Item
-                    as="button"
-                    type="button"
-                    onClick={() => handleShow()}
-                  >
-                    Profile
-                  </NavDropdown.Item>{" "}
-                  <NavDropdown.Item
-                    as="button"
-                    type="button"
-                    onClick={handleLogout}
-                  >
-                    Log out
-                  </NavDropdown.Item>
-                </NavDropdown>
-                <Language />
-              </Nav>
-            )}
+            <Nav>
+              <NavDropdown
+                title="Setting"
+                id="basic-nav-dropdown"
+              >
+                <NavDropdown.Item>Profile</NavDropdown.Item>{" "}
+                <NavDropdown.Item as="button" type="button" onClick={handleLogout}>
+                  Log out
+                </NavDropdown.Item>
+              </NavDropdown>
+              <Language />
+            </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <ModalProfile
-        show={isShowProfile}
-        setShow={setIsShowProfile}
-        user={a}
-        onLogout={handleLogout}
-        handleClose={handleClose}
-      />
     </>
   );
 };

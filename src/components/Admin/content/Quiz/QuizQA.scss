@@ -1,0 +1,231 @@
+.q-container {
+  padding: 20px;
+  background: transparent;
+  min-height: calc(100vh - 40px);
+}
+
+.q-card {
+  max-width: 900px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(14px);
+}
+
+.q-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.q-subtitle {
+  margin: 6px 0 18px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.q-field {
+  margin-bottom: 16px;
+}
+
+.q-card .form-control {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.q-card .form-control:focus {
+  border-color: rgba(14, 165, 233, 0.7);
+  box-shadow: 0 0 0 0.2rem rgba(14, 165, 233, 0.18);
+}
+
+.q-label {
+  display: inline-block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.q-section-title {
+  margin: 16px 0 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.q-select__control {
+  min-height: 44px !important;
+  border-radius: 12px !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  box-shadow: none !important;
+}
+
+.q-select__control:hover {
+  border-color: rgba(14, 165, 233, 0.7) !important;
+}
+
+.q-select__menu {
+  border-radius: 10px !important;
+  overflow: hidden;
+}
+
+.q-select__option--is-focused {
+  background-color: rgba(14, 165, 233, 0.18) !important;
+}
+
+.q-select__option--is-selected {
+  background-color: rgba(14, 165, 233, 0.55) !important;
+}
+
+.q-upload {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.q-upload-btn {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  padding: 7px 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.q-upload-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.q-file-name {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.92rem;
+}
+
+.q-action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.q-icon-btn {
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  transition:
+    transform 0.15s ease,
+    opacity 0.15s ease;
+}
+
+.q-icon-btn:hover {
+  transform: translateY(-1px);
+}
+
+.q-icon-btn:active {
+  transform: translateY(0);
+  opacity: 0.9;
+}
+
+.q-icon-btn.add {
+  background: #20a67a;
+}
+
+.q-icon-btn.remove {
+  background: #e05555;
+}
+
+.answers {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.answers .form-control {
+  border-radius: 10px;
+}
+
+.answers .form-check-input {
+  width: 18px;
+  height: 18px;
+}
+
+.a-icon-btn {
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  transition:
+    transform 0.15s ease,
+    opacity 0.15s ease;
+}
+
+.a-icon-btn.add {
+  background: #20a67a;
+}
+
+.a-icon-btn.remove {
+  background: #e05555;
+}
+
+.a-icon-btn:hover {
+  transform: translateY(-1px);
+}
+
+.a-icon-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+.form-floating {
+  justify-content: space-between;
+  display: flex;
+  input {
+    width: 80%;
+  }
+  .q-action-buttons {
+    width: 15%;
+    text-align: center;
+    justify-content: center;
+  }
+}
+.answers {
+  width: 100%;
+  display: flex;
+  .form-control {
+    width: 77%;
+    margin-right: 50px;
+  }
+}
+.answers {
+  margin-bottom: 20px;
+}
+.q-field {
+  border: 1px solid rgb(198, 198, 198);
+  border-radius: 11px;
+  border-left: none;
+  border-right: none;
+  margin-bottom: 40px;
+  .form-floating {
+    margin: 10px 0;
+  }
+}
+
+.q-icon-btn {
+  width: 70px;
+  height: 30px;
+}

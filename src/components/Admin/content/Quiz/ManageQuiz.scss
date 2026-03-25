@@ -1,0 +1,124 @@
+.manage-container {
+  min-height: auto;
+  padding: 16px 20px 8px;
+  background: transparent;
+
+  .title {
+    font-size: 30px;
+    margin: 0 0 12px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.92);
+  }
+
+  form {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  fieldset {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    border-radius: 16px !important;
+    padding: 24px !important;
+    box-shadow: 0 22px 60px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(14px);
+
+    .form-floating:first-of-type {
+      margin-top: 16px;
+    }
+  }
+
+  legend {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 0;
+  }
+
+  .form-floating > .form-control {
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.9);
+    height: 56px;
+    font-size: 0.95rem;
+  }
+
+  .form-floating > label {
+    color: rgba(255, 255, 255, 0.65);
+    font-weight: 500;
+  }
+
+  .form-control:focus {
+    border-color: rgba(14, 165, 233, 0.7);
+    box-shadow: 0 0 0 0.2rem rgba(14, 165, 233, 0.18);
+  }
+
+  .btn-submit {
+    margin-top: 16px;
+    border-radius: 10px;
+    padding: 10px 18px;
+    font-weight: 600;
+  }
+}
+
+.accordion {
+  --bs-accordion-border-color: rgba(255, 255, 255, 0.14);
+  --bs-accordion-btn-color: rgba(255, 255, 255, 0.9);
+  --bs-accordion-color: rgba(255, 255, 255, 0.86);
+  --bs-accordion-btn-bg: rgba(255, 255, 255, 0.08);
+  --bs-accordion-active-bg: rgba(14, 165, 233, 0.14);
+  --bs-accordion-active-color: #ffffff;
+  --bs-accordion-bg: rgba(255, 255, 255, 0.06);
+  --bs-accordion-btn-focus-box-shadow: 0 0 0 0.2rem rgba(14, 165, 233, 0.18);
+}
+
+.accordion-item {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 16px;
+  overflow: hidden;
+  backdrop-filter: blur(14px);
+  margin-bottom: 12px;
+}
+
+.accordion-button {
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.accordion-button::after {
+  filter: invert(1);
+  opacity: 0.75;
+}
+
+.accordion-button:not(.collapsed)::after {
+  opacity: 1;
+}
+
+.accordion-body {
+  background: rgba(2, 6, 23, 0.18);
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.quizTable {
+  margin-top: 8px !important;
+}
+
+.table {
+  margin-bottom: 0;
+
+  .button {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  .button button {
+    width: auto;
+    min-width: 72px;
+    border-radius: 8px;
+    padding: 4px 10px;
+  }
+}

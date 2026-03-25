@@ -1,6 +1,6 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { DeleteQuizbyAdmin } from "../../../services/apiServices";
+import { DeleteQuizbyAdmin } from "../../../../services/apiServices";
 import { toast } from "react-toastify";
 const DeleteQuiz = (props) => {
   const { show, setShow, selectedQuiz, feachquiz } = props;

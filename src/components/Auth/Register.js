@@ -4,6 +4,7 @@ import "./Loginconver.scss";
 import { postRegister } from "./../../services/apiServices";
 import { toast } from "react-toastify";
 import { VscEye, VscEyeClosed } from "react-icons/vsc";
+import Language from "../Header/Language";
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -56,6 +57,7 @@ const Register = () => {
       <div className="header">
         <p onClick={() => Loginpagebtn()}>Already have an account?</p>
         <button onClick={() => Loginpagebtn()}>Login</button>
+        <Language />
       </div>
       <div className="regester-box">
         <h1 className="title">AZ/ユウ - 8129</h1>

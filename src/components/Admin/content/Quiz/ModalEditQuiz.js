@@ -6,7 +6,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import { FcPlus } from "react-icons/fc";
 import { toast } from "react-toastify";
-import { EditQuizbyAdmin } from "../../../services/apiServices";
+import { EditQuizbyAdmin } from "../../../../services/apiServices";
 import _ from "lodash";
 
 const EditQuiz = (props) => {
@@ -18,7 +18,6 @@ const EditQuiz = (props) => {
   // const handleClose = () => setShow(false);
   // const handleShow = () => setShow(true);
 
-  const [id, setId] = useState();
   const [description, setDescription] = useState("");
   const [name, setName] = useState("");
   const [difficulty, setDifficulty] = useState("");
@@ -27,7 +26,6 @@ const EditQuiz = (props) => {
 
   useEffect(() => {
     if (!_.isEmpty(selectedQuiz)) {
-      setId(selectedQuiz.id);
       setName(selectedQuiz.name);
       setDifficulty(selectedQuiz.difficulty);
       setimage(selectedQuiz.image);
@@ -61,7 +59,6 @@ const EditQuiz = (props) => {
       } else {
         toast.error(res.data.EM);
       }
-      setId("null");
       setName("null");
       setDescription("null");
       setimage(null);
